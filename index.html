@@ -338,7 +338,7 @@ footer{background:var(--text);color:rgba(255,255,255,0.7);padding:48px 5vw 32px;
     <p class="waitlist-sub">We're currently in beta. Join the waitlist and we'll reach out when we're ready for you.</p>
     <form name="waitlist" method="POST" data-netlify="true" class="waitlist-form" onsubmit="handleWaitlist(event)">
       <input type="hidden" name="form-name" value="waitlist"/>
-      <input type="email" class="waitlist-input" placeholder="your@email.com" id="emailInput"/>
+      <input type="email" class="waitlist-input" placeholder="your@email.com" id="emailInput" name="email"/>
       <button type="submit" class="btn-orange" style="padding:14px 26px;font-size:15px;border-radius:50px;">Join waitlist</button>
     </div>
     <div class="waitlist-success" id="successMsg">🎉 You're on the list! We'll be in touch.</div>
