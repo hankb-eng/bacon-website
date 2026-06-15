@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Bacon — Investing made simple</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --orange:#F26419;--orange-light:#FEF0E8;--orange-mid:#FDDCC8;--orange-dark:#C44D08;
+  --pink:#F7A8C0;--pink-light:#FDE8F0;--pink-dark:#C0547A;
+  --blue:#A8D4F5;--blue-light:#E6F4FD;--blue-dark:#3A7FBF;
+  --text:#1A1A2E;--text-mid:#4A4A6A;--text-soft:#8A8AAA;
+  --white:#FFFFFF;--off-white:#FDFAF8;--border:rgba(0,0,0,0.08);--radius:16px;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--off-white);line-height:1.6;overflow-x:hidden;}
+
+nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;height:64px;background:rgba(253,250,248,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+.nav-logo{display:flex;align-items:center;gap:8px;font-family:'DM Serif Display',serif;font-size:22px;color:var(--text);text-decoration:none;}
+.nav-logo img{height:36px;width:auto;object-fit:contain;}
+.nav-links{display:flex;gap:28px;align-items:center;}
+.nav-links a{font-size:14px;color:var(--text-mid);text-decoration:none;transition:color 0.2s;}
+.nav-links a:hover{color:var(--orange);}
+.btn-primary{background:var(--orange);color:#fff;border:none;padding:10px 22px;border-radius:50px;font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;transition:transform 0.15s,opacity 0.15s;font-family:'DM Sans',sans-serif;display:inline-block;}
+.btn-primary:hover{opacity:0.88;transform:translateY(-1px);}
+
+.hero{min-height:90vh;display:flex;align-items:center;padding:80px 5vw 60px;background:linear-gradient(155deg,#FEF0E8 0%,#FFF8F0 45%,#EDF6FF 100%);}
+.hero-inner{max-width:1100px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--orange-light);color:var(--orange-dark);font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;padding:6px 14px;border-radius:50px;margin-bottom:24px;}
+.hero h1{font-family:'DM Serif Display',serif;font-size:clamp(34px,4.5vw,56px);line-height:1.15;color:var(--text);margin-bottom:20px;}
+.hero h1 span{color:var(--orange);}
+.hero-sub{font-size:17px;color:var(--text-mid);line-height:1.7;margin-bottom:36px;max-width:440px;}
+.hero-trust{margin-top:40px;display:flex;gap:24px;flex-wrap:wrap;}
+.trust-item{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-soft);}
+.trust-dot{width:8px;height:8px;border-radius:50%;background:var(--orange);flex-shrink:0;}
+
+.hero-visual{display:flex;justify-content:center;}
+.phone-frame{width:280px;background:var(--white);border-radius:36px;box-shadow:0 20px 60px rgba(242,100,25,0.15),0 4px 16px rgba(0,0,0,0.08);overflow:hidden;border:6px solid #f0ddd4;}
+.phone-status{background:var(--orange);padding:12px 20px 8px;font-size:11px;color:rgba(255,255,255,0.8);text-align:center;letter-spacing:0.04em;}
+.phone-screen{padding:20px;}
+.phone-greeting{font-size:13px;color:var(--text-soft);margin-bottom:4px;}
+.phone-name{font-size:20px;font-weight:600;color:var(--text);margin-bottom:20px;}
+.phone-balance-label{font-size:11px;color:var(--text-soft);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px;}
+.phone-balance{font-family:'DM Serif Display',serif;font-size:36px;color:var(--text);margin-bottom:4px;}
+.phone-gain{display:inline-flex;align-items:center;gap:4px;background:#E8F5E9;color:#2E7D32;font-size:12px;font-weight:600;padding:3px 10px;border-radius:50px;margin-bottom:20px;}
+.phone-chart{height:70px;margin-bottom:20px;overflow:hidden;}
+.phone-chart svg{width:100%;height:100%;}
+.phone-etf-row{background:var(--orange-light);border-radius:12px;padding:12px 14px;display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.p-etf-name{font-weight:600;font-size:14px;color:var(--orange-dark);}
+.p-etf-full{font-size:11px;color:var(--text-soft);margin-top:1px;}
+.p-etf-val{font-size:14px;font-weight:600;color:var(--text);}
+.phone-add-btn{width:100%;background:var(--orange);color:#fff;border:none;border-radius:50px;padding:12px;font-size:14px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:6px;}
+
+.friends-banner{background:var(--orange-light);padding:80px 5vw;text-align:center;border-top:1px solid var(--orange-mid);border-bottom:1px solid var(--orange-mid);}
+.friends-inner{max-width:700px;margin:0 auto;}
+.friends-banner h2{font-family:'DM Serif Display',serif;font-size:clamp(26px,4vw,44px);line-height:1.25;margin-bottom:16px;color:var(--text);}
+.friends-banner h2 em{font-style:italic;color:var(--orange-dark);}
+.friends-sub{font-size:16px;color:var(--text-mid);line-height:1.7;margin-bottom:28px;max-width:520px;margin-left:auto;margin-right:auto;}
+.friends-cards{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:32px;}
+.friend-card{background:var(--white);border:1px solid var(--orange-mid);border-radius:14px;padding:16px 20px;max-width:200px;text-align:left;}
+.friend-name{font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px;}
+.friend-quote{font-size:12px;color:var(--text-mid);line-height:1.5;font-style:italic;}
+.friend-reality{font-size:11px;color:var(--orange-dark);margin-top:8px;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;}
+.btn-orange{background:var(--orange);color:#fff;border:none;padding:14px 30px;border-radius:50px;font-size:15px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;text-decoration:none;display:inline-block;transition:transform 0.15s,opacity 0.15s;}
+.btn-orange:hover{opacity:0.88;transform:translateY(-1px);}
+
+.section{padding:90px 5vw;}
+.section-inner{max-width:1000px;margin:0 auto;}
+.section-eyebrow{font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--orange);margin-bottom:12px;}
+.section-title{font-family:'DM Serif Display',serif;font-size:clamp(28px,4vw,44px);line-height:1.2;margin-bottom:14px;}
+.section-sub{font-size:16px;color:var(--text-mid);max-width:520px;margin-bottom:56px;line-height:1.7;}
+.steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;}
+.step-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:28px 24px;}
+.step-num{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;margin-bottom:18px;}
+.step-num.p{background:var(--orange-light);color:var(--orange-dark);}
+.step-num.o{background:var(--pink-light);color:var(--pink-dark);}
+.step-num.b{background:var(--blue-light);color:var(--blue-dark);}
+.step-num.g{background:#E8F5E9;color:#2E7D32;}
+.step-title{font-size:16px;font-weight:600;margin-bottom:8px;}
+.step-desc{font-size:14px;color:var(--text-mid);line-height:1.65;}
+
+.why-section{background:linear-gradient(135deg,#FEF0E8 0%,#FFF8F0 100%);padding:90px 5vw;}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;max-width:1000px;margin:0 auto;}
+.why-left{padding-right:20px;}
+.why-right{display:flex;flex-direction:column;gap:18px;}
+.why-card{background:var(--white);border-radius:var(--radius);padding:22px 24px;border:1px solid var(--border);display:flex;gap:16px;align-items:flex-start;}
+.why-icon{width:42px;height:42px;border-radius:12px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:20px;}
+.why-card-title{font-size:15px;font-weight:600;margin-bottom:4px;}
+.why-card-desc{font-size:13px;color:var(--text-mid);line-height:1.6;}
+
+.etf-section{padding:90px 5vw;background:var(--white);}
+.etf-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;max-width:1000px;margin:0 auto;}
+.etf-card{border-radius:var(--radius);padding:24px 20px;border:1px solid transparent;}
+.etf-card.bnd{background:var(--blue-light);border-color:rgba(168,212,245,0.5);}
+.etf-card.blend{background:var(--pink-light);border-color:rgba(247,168,192,0.4);}
+.etf-card.voo{background:var(--orange-light);border-color:rgba(242,100,25,0.2);}
+.etf-card.vug{background:#EAF3DE;border-color:rgba(129,199,132,0.4);}
+.etf-ticker{font-family:'DM Serif Display',serif;font-size:28px;margin-bottom:4px;}
+.etf-card.bnd .etf-ticker{color:var(--blue-dark);}
+.etf-card.blend .etf-ticker{color:var(--pink-dark);}
+.etf-card.voo .etf-ticker{color:var(--orange-dark);}
+.etf-card.vug .etf-ticker{color:#3B6D11;}
+.etf-name-full{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:12px;opacity:0.6;}
+.etf-desc{font-size:13px;color:var(--text-mid);line-height:1.6;margin-bottom:14px;}
+.etf-tag{font-size:11px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;padding:4px 10px;border-radius:50px;}
+.bnd .etf-tag{background:rgba(58,127,191,0.15);color:var(--blue-dark);}
+.blend .etf-tag{background:rgba(192,84,122,0.15);color:var(--pink-dark);}
+.voo .etf-tag{background:rgba(242,100,25,0.15);color:var(--orange-dark);}
+.vug .etf-tag{background:rgba(59,109,17,0.12);color:#3B6D11;}
+
+.pricing-section{padding:90px 5vw;background:var(--off-white);}
+.pricing-card{max-width:560px;margin:0 auto;background:var(--white);border-radius:24px;padding:48px;border:1px solid var(--border);text-align:center;}
+.pricing-big{font-family:'DM Serif Display',serif;font-size:72px;color:var(--orange);line-height:1;}
+.pricing-label{font-size:16px;color:var(--text-mid);margin:8px 0 28px;}
+.pricing-details{list-style:none;display:flex;flex-direction:column;gap:14px;}
+.pricing-details li{display:flex;align-items:flex-start;gap:12px;font-size:15px;color:var(--text-mid);text-align:left;}
+.check{width:22px;height:22px;border-radius:50%;background:var(--orange-light);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--orange-dark);font-weight:700;margin-top:1px;}
+
+.waitlist-section{padding:100px 5vw;background:var(--orange-light);border-top:1px solid var(--orange-mid);text-align:center;}
+.waitlist-inner{max-width:560px;margin:0 auto;}
+.waitlist-title{font-family:'DM Serif Display',serif;font-size:clamp(30px,5vw,50px);color:var(--text);margin-bottom:14px;line-height:1.2;}
+.waitlist-sub{font-size:16px;color:var(--text-mid);margin-bottom:36px;}
+.waitlist-form{display:flex;gap:10px;max-width:420px;margin:0 auto 16px;}
+.waitlist-input{flex:1;padding:14px 18px;border-radius:50px;border:1.5px solid var(--orange-mid);font-size:15px;font-family:'DM Sans',sans-serif;outline:none;background:var(--white);color:var(--text);}
+.waitlist-input:focus{border-color:var(--orange);}
+.waitlist-input::placeholder{color:var(--text-soft);}
+.waitlist-fine{font-size:12px;color:var(--text-soft);margin-top:8px;}
+.waitlist-success{display:none;font-size:16px;font-weight:600;color:var(--orange-dark);margin-top:16px;}
+
+.faq-section{padding:90px 5vw;background:var(--white);}
+.faq-item{border-bottom:1px solid var(--border);}
+.faq-q{width:100%;background:none;border:none;padding:22px 0;text-align:left;font-size:16px;font-weight:500;color:var(--text);cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:'DM Sans',sans-serif;gap:16px;}
+.faq-q:hover{color:var(--orange);}
+.faq-arrow{font-size:20px;color:var(--text-soft);transition:transform 0.2s;flex-shrink:0;}
+.faq-a{display:none;font-size:15px;color:var(--text-mid);line-height:1.7;padding-bottom:20px;}
+.faq-item.open .faq-a{display:block;}
+.faq-item.open .faq-arrow{transform:rotate(180deg);}
+
+.learn-section{padding:90px 5vw;background:var(--off-white);}
+.learn-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;max-width:1000px;margin:0 auto;}
+.learn-card{background:var(--white);border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);opacity:0.75;}
+.learn-img{height:100px;display:flex;align-items:center;justify-content:center;font-size:38px;}
+.learn-body{padding:20px;}
+.learn-tag{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--orange);margin-bottom:8px;}
+.learn-title{font-size:15px;font-weight:600;margin-bottom:6px;line-height:1.4;}
+.learn-preview{font-size:13px;color:var(--text-mid);line-height:1.6;}
+
+footer{background:var(--text);color:rgba(255,255,255,0.7);padding:48px 5vw 32px;font-size:13px;}
+.footer-inner{max-width:1000px;margin:0 auto;}
+.footer-top{display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap;margin-bottom:40px;}
+.footer-brand{display:flex;align-items:center;gap:8px;font-family:'DM Serif Display',serif;font-size:22px;color:var(--orange);margin-bottom:8px;}
+.footer-brand img{height:28px;width:auto;object-fit:contain;}
+.footer-tagline{font-size:13px;opacity:0.6;}
+.footer-links{display:flex;gap:24px;flex-wrap:wrap;align-items:center;}
+.footer-links a{color:rgba(255,255,255,0.6);text-decoration:none;transition:color 0.2s;}
+.footer-links a:hover{color:var(--orange);}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.1);padding-top:24px;opacity:0.45;line-height:1.7;}
+
+@media(max-width:720px){
+  .hero-inner{grid-template-columns:1fr;}
+  .hero-visual{margin-top:20px;}
+  .why-grid{grid-template-columns:1fr;}
+  .waitlist-form{flex-direction:column;}
+  .footer-top{flex-direction:column;}
+  nav .nav-links{display:none;}
+  .friends-cards{flex-direction:column;align-items:center;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">
+    <img src="/bacon-logo.png" alt="Bacon pig logo" onerror="this.style.display='none'"/>
+    Bacon
+  </a>
+  <div class="nav-links">
+    <a href="#how">How it works</a>
+    <a href="#etfs">Our ETFs</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#learn">Learn</a>
+    <a href="#waitlist" class="btn-primary">Join the waitlist</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">🥓 Now in beta</div>
+      <h1>You bring home the bacon.<br/><span>Now let's save it.</span></h1>
+      <p class="hero-sub">Bacon is the investing app that makes the whole process simple. Answer a few quick questions and we'll pick one of four low-cost Vanguard ETFs that fits your goals. Setup takes under five minutes.</p>
+      <a href="#waitlist" class="btn-primary" style="font-size:16px;padding:14px 30px;">Join the waitlist</a>
+      <div class="hero-trust">
+        <div class="trust-item"><div class="trust-dot"></div> Open in under 5 minutes</div>
+        <div class="trust-item"><div class="trust-dot" style="background:var(--blue)"></div> IRA-first for young earners</div>
+        <div class="trust-item"><div class="trust-dot" style="background:var(--pink)"></div> Just 4 low-cost Vanguard ETFs</div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="phone-frame">
+        <div class="phone-status">baconinvest.com</div>
+        <div class="phone-screen">
+          <div class="phone-greeting">Good morning,</div>
+          <div class="phone-name">Sarah 👋</div>
+          <div class="phone-balance-label">Portfolio value</div>
+          <div class="phone-balance">$3,847</div>
+          <div class="phone-gain">↑ +$284 this year</div>
+          <div class="phone-chart">
+            <svg viewBox="0 0 240 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+              <defs><linearGradient id="lg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#F26419" stop-opacity="0.3"/><stop offset="100%" stop-color="#F26419" stop-opacity="0"/></linearGradient></defs>
+              <path d="M0,55 C20,52 40,48 60,45 S90,38 110,34 S145,25 170,20 S210,16 240,12" stroke="#F26419" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+              <path d="M0,55 C20,52 40,48 60,45 S90,38 110,34 S145,25 170,20 S210,16 240,12 L240,70 L0,70 Z" fill="url(#lg)"/>
+            </svg>
+          </div>
+          <div class="phone-etf-row">
+            <div><div class="p-etf-name">VOO</div><div class="p-etf-full">Vanguard S&amp;P 500 ETF</div></div>
+            <div class="p-etf-val">$3,847</div>
+          </div>
+          <button class="phone-add-btn">+ Add funds</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="friends-banner">
+  <div class="friends-inner">
+    <h2>Your friends don't have it figured out.<br/><em>They're just using Bacon.</em></h2>
+    <p class="friends-sub">In our survey, the most common feeling people had about investing was: "It seems like everyone else has this figured out except me." Spoiler: they don't. They're just getting started — the same as you.</p>
+    <div class="friends-cards">
+      <div class="friend-card">
+        <div class="friend-name">Jake, 27</div>
+        <div class="friend-quote">"Oh yeah, I've been investing for years."</div>
+        <div class="friend-reality">Reality: opened his account last Tuesday</div>
+      </div>
+      <div class="friend-card">
+        <div class="friend-name">Mia, 24</div>
+        <div class="friend-quote">"I just put money into the market every month."</div>
+        <div class="friend-reality">Reality: one ETF, auto-invest, done</div>
+      </div>
+      <div class="friend-card">
+        <div class="friend-name">Chris, 30</div>
+        <div class="friend-quote">"I have a pretty diversified portfolio."</div>
+        <div class="friend-reality">Reality: it's VOO. just VOO.</div>
+      </div>
+    </div>
+    <a href="#waitlist" class="btn-orange">Get started — it's easier than you think</a>
+  </div>
+</section>
+
+<section class="section" id="how">
+  <div class="section-inner">
+    <div class="section-eyebrow">How it works</div>
+    <h2 class="section-title">Investing doesn't have to be complicated.</h2>
+    <p class="section-sub">Most apps overwhelm you with choices. Bacon does the opposite — we ask a few questions, then tell you exactly what to do.</p>
+    <div class="steps-grid">
+      <div class="step-card"><div class="step-num p">1</div><div class="step-title">Answer a few quick questions</div><div class="step-desc">Your goal, your timeline, and a bit about you. No finance degree required — takes about two minutes.</div></div>
+      <div class="step-card"><div class="step-num o">2</div><div class="step-title">We recommend one ETF</div><div class="step-desc">From four low-cost Vanguard options, we pick the one that fits. No endless menus. One clear answer.</div></div>
+      <div class="step-card"><div class="step-num b">3</div><div class="step-title">Open your account</div><div class="step-desc">Roth IRA, Traditional IRA, or Brokerage — we guide you to the right account type based on your situation.</div></div>
+      <div class="step-card"><div class="step-num g">4</div><div class="step-title">Invest automatically</div><div class="step-desc">Set up recurring investments and let your money grow. Check in whenever you want — or just forget about it.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="why-section">
+  <div style="max-width:1000px;margin:0 auto;">
+    <div class="section-eyebrow">Why Bacon</div>
+    <h2 class="section-title" style="margin-bottom:24px;">Built for people who know they should be investing — but haven't started or want to do more.</h2>
+    <div class="why-grid">
+      <div class="why-left">
+        <p style="font-size:16px;color:var(--text-mid);line-height:1.8;margin-bottom:20px;">The #1 barrier to investing isn't money — it's not knowing what to do. Too many options, too much jargon, too many apps that assume you already know the answer.</p>
+        <p style="font-size:16px;color:var(--text-mid);line-height:1.8;margin-bottom:28px;">Bacon fixes that. We make the recommendation so you can stress less and invest more.</p>
+        <a href="#waitlist" class="btn-primary" style="font-size:15px;">Get off the sidelines</a>
+      </div>
+      <div class="why-right">
+        <div class="why-card"><div class="why-icon" style="background:var(--orange-light);">🎯</div><div><div class="why-card-title">Radical simplicity</div><div class="why-card-desc">We only offer four options, because in reality, that is all 99% of people need. We already made the hard choices for you so you can make your money work for you.</div></div></div>
+        <div class="why-card"><div class="why-icon" style="background:var(--pink-light);">🔒</div><div><div class="why-card-title">Retirement accounts for young earners</div><div class="why-card-desc">Most apps bury retirement accounts. We make one easy to set up, because starting early is the single best financial move you can make.</div></div></div>
+        <div class="why-card"><div class="why-icon" style="background:var(--blue-light);">💸</div><div><div class="why-card-title">Simple, transparent fees</div><div class="why-card-desc">We charge 0.15% of your balance annually — automatically deducted. Under $1,000 invested? You'll pay less than $1.50 for the whole year.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="etf-section" id="etfs">
+  <div style="max-width:1000px;margin:0 auto;">
+    <div class="section-eyebrow">Our ETF lineup</div>
+    <h2 class="section-title">Introducing our investment lineup.</h2>
+    <p class="section-sub">Whether you're a finance pro or it's your first time thinking about this, we'll pick out the best of our four options for you, based on your timeline and goals.</p>
+    <div class="etf-grid">
+      <div class="etf-card bnd"><div class="etf-ticker">BND</div><div class="etf-name-full">Total Bond Market</div><div class="etf-desc">Low volatility, steady returns. Best for short timelines or anyone who needs stability first.</div><span class="etf-tag">Stable</span></div>
+      <div class="etf-card blend"><div class="etf-ticker">Blend</div><div class="etf-name-full">50% BND + 50% VOO</div><div class="etf-desc">Our Bacon Blend splits the difference — growth potential with a cushion of stability.</div><span class="etf-tag">Balanced</span></div>
+      <div class="etf-card voo"><div class="etf-ticker">VOO</div><div class="etf-name-full">S&amp;P 500 ETF</div><div class="etf-desc">500 of America's biggest companies. The classic long-term investment for a reason.</div><span class="etf-tag">Growth</span></div>
+      <div class="etf-card vug"><div class="etf-ticker">VUG</div><div class="etf-name-full">Growth ETF</div><div class="etf-desc">High-growth US companies. More upside, more swings — best with a long horizon.</div><span class="etf-tag">High growth</span></div>
+    </div>
+    <p style="font-size:12px;color:var(--text-soft);margin-top:24px;max-width:600px;">Expense ratios 0.03–0.04%. Bacon does not benefit from these fund fees. Past performance does not guarantee future results. Investing involves risk, including possible loss of principal.</p>
+  </div>
+</section>
+
+<section class="pricing-section" id="pricing">
+  <div style="max-width:560px;margin:0 auto;">
+    <div class="section-eyebrow">Pricing</div>
+    <h2 class="section-title" style="margin-bottom:40px;">Our simple pricing.</h2>
+  </div>
+  <div class="pricing-card">
+    <div class="pricing-big">0.15%</div>
+    <div class="pricing-label">of your balance per year — that's it</div>
+    <ul class="pricing-details">
+      <li><div class="check">✓</div> Quick math — every $1,000 you have invested costs you only $1.50 a year.</li>
+      <li><div class="check">✓</div> No signup fee</li>
+      <li><div class="check">✓</div> No trading commissions</li>
+      <li><div class="check">✓</div> Fee only applies to invested money, deducted automatically</li>
+    </ul>
+  </div>
+</section>
+
+<section class="learn-section" id="learn">
+  <div style="max-width:1000px;margin:0 auto;">
+    <div class="section-eyebrow">Learn</div>
+    <h2 class="section-title">Investing 101 — in plain English.</h2>
+    <p class="section-sub">Short, jargon-free guides for first-time investors. More coming soon.</p>
+    <div class="learn-grid">
+      <div class="learn-card"><div class="learn-img" style="background:var(--orange-light);">📖</div><div class="learn-body"><div class="learn-tag">Basics</div><div class="learn-title">What is an ETF and why should I care?</div><div class="learn-preview">The easiest way to understand what you're actually investing in — no Wall Street lingo needed.</div></div></div>
+      <div class="learn-card"><div class="learn-img" style="background:var(--pink-light);">🌱</div><div class="learn-body"><div class="learn-tag">Retirement</div><div class="learn-title">Roth IRA vs. Traditional IRA: which one is for you?</div><div class="learn-preview">The difference between paying taxes now vs. later — and why it matters more than you think in your 20s.</div></div></div>
+      <div class="learn-card"><div class="learn-img" style="background:var(--blue-light);">📅</div><div class="learn-body"><div class="learn-tag">Strategy</div><div class="learn-title">Why "set it and forget it" actually works</div><div class="learn-preview">The case for automatic investing — and why not checking your portfolio every day is a feature, not a bug.</div></div></div>
+    </div>
+    <p style="text-align:center;margin-top:28px;font-size:14px;color:var(--text-soft);">✉️ Articles launching soon — join the waitlist to be notified.</p>
+  </div>
+</section>
+
+<section class="waitlist-section" id="waitlist">
+  <div class="waitlist-inner">
+    <img src="/bacon-logo.png" alt="Bacon pig" style="height:90px;width:auto;margin:0 auto 24px;display:block;" onerror="this.style.display='none'"/>
+    <h2 class="waitlist-title">Be first to bring home the bacon.</h2>
+    <p class="waitlist-sub">We're currently in beta. Join the waitlist and we'll reach out when we're ready for you.</p>
+    <div class="waitlist-form">
+      <input type="email" class="waitlist-input" placeholder="your@email.com" id="emailInput"/>
+      <button class="btn-orange" onclick="handleWaitlist()" style="padding:14px 26px;font-size:15px;border-radius:50px;">Join waitlist</button>
+    </div>
+    <div class="waitlist-success" id="successMsg">🎉 You're on the list! We'll be in touch.</div>
+    <p class="waitlist-fine">No spam. No pitch decks. Just Bacon.</p>
+  </div>
+</section>
+
+<section class="faq-section" id="faq">
+  <div style="max-width:680px;margin:0 auto;">
+    <div class="section-eyebrow">FAQ</div>
+    <h2 class="section-title" style="margin-bottom:40px;">Questions we get a lot.</h2>
+    <div id="faqList">
+      <div class="faq-item"><button class="faq-q">Is my money safe with Bacon?<span class="faq-arrow">▾</span></button><div class="faq-a">Bacon is a technology platform — your actual investments are held at our licensed brokerage partner, and covered by SIPC insurance up to $500,000. We never touch your money directly.</div></div>
+      <div class="faq-item"><button class="faq-q">Do I need a lot of money to start?<span class="faq-arrow">▾</span></button><div class="faq-a">No minimum. You can start with whatever you're comfortable with — $10, $50, whatever fits your life right now. The most important thing is just getting started.</div></div>
+      <div class="faq-item"><button class="faq-q">What exactly is an ETF?<span class="faq-arrow">▾</span></button><div class="faq-a">An ETF (exchange-traded fund) is a basket of stocks or bonds you buy in one shot. Instead of picking individual stocks, you own a tiny slice of hundreds or thousands of companies. It's one of the most diversified, low-cost ways to invest.</div></div>
+      <div class="faq-item"><button class="faq-q">Can I lose money?<span class="faq-arrow">▾</span></button><div class="faq-a">Yes — all investing involves risk, including the possible loss of principal. ETF values go up and down with the market. That's why Bacon matches your investment to your timeline — a longer horizon means more time to ride out dips.</div></div>
+      <div class="faq-item"><button class="faq-q">What's the difference between a Roth IRA and a brokerage account?<span class="faq-arrow">▾</span></button><div class="faq-a">A Roth IRA lets your money grow tax-free — you pay taxes now, but never on the gains. A brokerage account is more flexible: no contribution limits, no penalties for withdrawals, but gains are taxed. Bacon helps you figure out which is right for your situation.</div></div>
+      <div class="faq-item"><button class="faq-q">Is Bacon available right now?<span class="faq-arrow">▾</span></button><div class="faq-a">We're currently in beta. No real money is involved yet — we're building toward a full launch. Join the waitlist above to get early access when we go live.</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">
+          <img src="/bacon-logo.png" alt="Bacon pig" onerror="this.style.display='none'"/>
+          Bacon
+        </div>
+        <div class="footer-tagline">Investing made simple.</div>
+      </div>
+      <div class="footer-links">
+        <a href="#how">How it works</a>
+        <a href="#etfs">Our ETFs</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#learn">Learn</a>
+        <a href="mailto:hank@baconinvest.com">Contact</a>
+      </div>
+    </div>
+    <div class="footer-bottom">Bacon is a financial technology platform, not a registered investment adviser. Content is for informational purposes only and does not constitute investment advice. Investing involves risk, including possible loss of principal. Bacon is currently in beta — no real money is involved. © 2025 Bacon. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+document.getElementById('faqList').addEventListener('click',function(e){
+  const btn=e.target.closest('.faq-q');
+  if(!btn)return;
+  const item=btn.closest('.faq-item');
+  const isOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(el=>el.classList.remove('open'));
+  if(!isOpen)item.classList.add('open');
+});
+function handleWaitlist(){
+  const input=document.getElementById('emailInput');
+  const success=document.getElementById('successMsg');
+  if(input.value&&input.value.includes('@')){
+    input.style.display='none';
+    document.querySelector('.btn-orange[onclick]').style.display='none';
+    success.style.display='block';
+  }else{
+    input.style.borderColor='#F26419';
+    input.placeholder='Please enter a valid email';
+  }
+}
+</script>
+</body>
+</html>
