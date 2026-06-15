@@ -161,13 +161,83 @@ footer{background:var(--text);color:rgba(255,255,255,0.7);padding:48px 5vw 32px;
 .footer-bottom{border-top:1px solid rgba(255,255,255,0.1);padding-top:24px;opacity:0.45;line-height:1.7;}
 
 @media(max-width:720px){
-  .hero-inner{grid-template-columns:1fr;}
-  .hero-visual{margin-top:20px;}
-  .why-grid{grid-template-columns:1fr;}
-  .waitlist-form{flex-direction:column;}
-  .footer-top{flex-direction:column;}
+  /* NAV */
+  nav{padding:0 4vw;}
   nav .nav-links{display:none;}
+  .nav-logo{font-size:18px;}
+  .nav-logo img{height:28px;}
+
+  /* HERO */
+  .hero{padding:48px 5vw 48px;min-height:auto;}
+  .hero-inner{grid-template-columns:1fr;gap:32px;}
+  .hero h1{font-size:32px;}
+  .hero-sub{font-size:15px;margin-bottom:24px;}
+  .hero-visual{margin-top:0;}
+  .phone-frame{width:240px;}
+
+  /* FRIENDS */
+  .friends-banner{padding:48px 5vw;}
+  .friends-banner h2{font-size:24px;}
+  .friends-sub{font-size:14px;}
   .friends-cards{flex-direction:column;align-items:center;}
+  .friend-card{max-width:100%;width:100%;}
+
+  /* HOW IT WORKS */
+  .section{padding:56px 5vw;}
+  .section-title{font-size:26px;}
+  .section-sub{font-size:14px;margin-bottom:32px;}
+  .steps-grid{grid-template-columns:1fr;gap:16px;}
+  .step-card{padding:20px 18px;}
+
+  /* WHY BACON */
+  .why-section{padding:56px 5vw;}
+  .why-grid{grid-template-columns:1fr;gap:20px;}
+  .why-left{padding-right:0;}
+  .why-left p{font-size:14px;}
+  .why-card{padding:16px 18px;}
+
+  /* ETF */
+  .etf-section{padding:56px 5vw;}
+  .etf-grid{grid-template-columns:1fr 1fr;gap:12px;}
+  .etf-ticker{font-size:22px;}
+  .etf-desc{font-size:12px;}
+
+  /* PRICING */
+  .pricing-section{padding:56px 5vw;}
+  .pricing-card{padding:32px 24px;}
+  .pricing-big{font-size:56px;}
+  .pricing-label{font-size:14px;}
+  .pricing-details li{font-size:14px;}
+
+  /* LEARN */
+  .learn-section{padding:56px 5vw;}
+  .learn-grid{grid-template-columns:1fr;gap:16px;}
+  .learn-card{opacity:1;}
+
+  /* WAITLIST */
+  .waitlist-section{padding:64px 5vw;}
+  .waitlist-title{font-size:28px;}
+  .waitlist-sub{font-size:14px;margin-bottom:24px;}
+  .waitlist-form{flex-direction:column;gap:12px;}
+  .waitlist-input{border-radius:50px;text-align:center;}
+  .btn-orange{width:100%;text-align:center;}
+
+  /* FAQ */
+  .faq-section{padding:56px 5vw;}
+  .faq-q{font-size:14px;}
+  .faq-a{font-size:14px;}
+
+  /* FOOTER */
+  footer{padding:40px 5vw 24px;}
+  .footer-top{flex-direction:column;gap:24px;}
+  .footer-links{gap:16px;flex-wrap:wrap;}
+  .footer-bottom{font-size:11px;}
+}
+
+@media(max-width:400px){
+  .etf-grid{grid-template-columns:1fr;}
+  .hero h1{font-size:28px;}
+  .phone-frame{width:200px;}
 }
 </style>
 </head>
