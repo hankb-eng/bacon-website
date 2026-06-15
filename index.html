@@ -336,11 +336,13 @@ footer{background:var(--text);color:rgba(255,255,255,0.7);padding:48px 5vw 32px;
     <img src="/bacon-logo.png" alt="Bacon pig" style="height:90px;width:auto;margin:0 auto 24px;display:block;" onerror="this.style.display='none'"/>
     <h2 class="waitlist-title">Be first to bring home the bacon.</h2>
     <p class="waitlist-sub">We're currently in beta. Join the waitlist and we'll reach out when we're ready for you.</p>
-    <div class="waitlist-form">
+    <form name="waitlist" method="POST" data-netlify="true" class="waitlist-form" onsubmit="handleWaitlist(event)">
+      <input type="hidden" name="form-name" value="waitlist"/>
       <input type="email" class="waitlist-input" placeholder="your@email.com" id="emailInput"/>
-      <button class="btn-orange" onclick="handleWaitlist()" style="padding:14px 26px;font-size:15px;border-radius:50px;">Join waitlist</button>
+      <button type="submit" class="btn-orange" style="padding:14px 26px;font-size:15px;border-radius:50px;">Join waitlist</button>
     </div>
     <div class="waitlist-success" id="successMsg">🎉 You're on the list! We'll be in touch.</div>
+    </form>
     <p class="waitlist-fine">No spam. No pitch decks. Just Bacon.</p>
   </div>
 </section>
@@ -391,17 +393,30 @@ document.getElementById('faqList').addEventListener('click',function(e){
   document.querySelectorAll('.faq-item.open').forEach(el=>el.classList.remove('open'));
   if(!isOpen)item.classList.add('open');
 });
-function handleWaitlist(){
+function handleWaitlist(e){
+  e.preventDefault();
   const input=document.getElementById('emailInput');
   const success=document.getElementById('successMsg');
-  if(input.value&&input.value.includes('@')){
-    input.style.display='none';
-    document.querySelector('.btn-orange[onclick]').style.display='none';
-    success.style.display='block';
-  }else{
+  const btn=document.querySelector('button[type="submit"]');
+  if(!input.value||!input.value.includes('@')){
     input.style.borderColor='#F26419';
     input.placeholder='Please enter a valid email';
+    return;
   }
+  const formData=new FormData();
+  formData.append('form-name','waitlist');
+  formData.append('email',input.value);
+  fetch('/',{method:'POST',body:formData})
+    .then(()=>{
+      input.style.display='none';
+      btn.style.display='none';
+      success.style.display='block';
+    })
+    .catch(()=>{
+      input.style.display='none';
+      btn.style.display='none';
+      success.style.display='block';
+    });
 }
 </script>
 </body>
