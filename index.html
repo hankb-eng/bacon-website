@@ -25,7 +25,7 @@ nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-co
 .nav-links{display:flex;gap:28px;align-items:center;}
 .nav-links a{font-size:14px;color:var(--text-mid);text-decoration:none;transition:color 0.2s;}
 .nav-links a:hover{color:var(--orange);}
-.btn-primary{background:var(--orange);color:#fff;border:none;padding:10px 22px;border-radius:50px;font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;transition:transform 0.15s,opacity 0.15s;font-family:'DM Sans',sans-serif;display:inline-block;}
+.btn-primary{background:var(--orange);color:#fff !important;border:none;padding:10px 22px;border-radius:50px;font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;transition:transform 0.15s,opacity 0.15s;font-family:'DM Sans',sans-serif;display:inline-block;}
 .btn-primary:hover{opacity:0.88;transform:translateY(-1px);}
 
 .hero{min-height:90vh;display:flex;align-items:center;padding:80px 5vw 60px;background:linear-gradient(155deg,#FEF0E8 0%,#FFF8F0 45%,#EDF6FF 100%);}
@@ -192,12 +192,8 @@ footer{background:var(--text);color:rgba(255,255,255,0.7);padding:48px 5vw 32px;
     <div>
       <div class="hero-eyebrow">🥓 Now in beta</div>
       <h1>You bring home the bacon.<br/><span>Now let's save it.</span></h1>
-      <p class="hero-sub">Bacon is the investing app that makes the whole process simple. Answer a few quick questions and we'll pick one of four low-cost Vanguard ETFs that fits your goals. Setup takes under five minutes.</p>
+      <p class="hero-sub">Bacon makes the investing process simple. Download the app, answer a few quick questions, and we'll recommend one of our four well-researched, low-cost ETFs that fits your goals. Getting setup takes less than five minutes.</p>
       <a href="#waitlist" class="btn-primary" style="font-size:16px;padding:14px 30px;">Join the waitlist</a>
-      <div class="hero-trust">
-        <div class="trust-item"><div class="trust-dot"></div> Open in under 5 minutes</div>
-        <div class="trust-item"><div class="trust-dot" style="background:var(--blue)"></div> IRA-first for young earners</div>
-        <div class="trust-item"><div class="trust-dot" style="background:var(--pink)"></div> Just 4 low-cost Vanguard ETFs</div>
       </div>
     </div>
     <div class="hero-visual">
@@ -230,7 +226,7 @@ footer{background:var(--text);color:rgba(255,255,255,0.7);padding:48px 5vw 32px;
 <section class="friends-banner">
   <div class="friends-inner">
     <h2>Your friends don't have it figured out.<br/><em>They're just using Bacon.</em></h2>
-    <p class="friends-sub">In our survey, the most common feeling people had about investing was: "It seems like everyone else has this figured out except me." Spoiler: they don't. They're just getting started — the same as you.</p>
+    <p class="friends-sub">Our surveys tell us the most common feeling people have about investing is "It seems everyone else has this figured out except me." Spoiler: they don't. They're just getting started — the same as you.</p>
     <div class="friends-cards">
       <div class="friend-card">
         <div class="friend-name">Jake, 27</div>
@@ -258,9 +254,9 @@ footer{background:var(--text);color:rgba(255,255,255,0.7);padding:48px 5vw 32px;
     <h2 class="section-title">Investing doesn't have to be complicated.</h2>
     <p class="section-sub">Most apps overwhelm you with choices. Bacon does the opposite — we ask a few questions, then tell you exactly what to do.</p>
     <div class="steps-grid">
-      <div class="step-card"><div class="step-num p">1</div><div class="step-title">Answer a few quick questions</div><div class="step-desc">Your goal, your timeline, and a bit about you. No finance degree required — takes about two minutes.</div></div>
-      <div class="step-card"><div class="step-num o">2</div><div class="step-title">We recommend one ETF</div><div class="step-desc">From four low-cost Vanguard options, we pick the one that fits. No endless menus. One clear answer.</div></div>
-      <div class="step-card"><div class="step-num b">3</div><div class="step-title">Open your account</div><div class="step-desc">Roth IRA, Traditional IRA, or Brokerage — we guide you to the right account type based on your situation.</div></div>
+      <div class="step-card"><div class="step-num p">1</div><div class="step-title">Answer a few quick questions</div><div class="step-desc">Tell us about your goals — no finance degree required.</div></div>
+      <div class="step-card"><div class="step-num o">2</div><div class="step-title">We recommend one ETF</div><div class="step-desc">From four well-researched, low-cost options, we recommend one that fits you.</div></div>
+      <div class="step-card"><div class="step-num b">3</div><div class="step-title">Open your account</div><div class="step-desc">We offer retirement and brokerage accounts, and can guide you to the right type based on your situation.</div></div>
       <div class="step-card"><div class="step-num g">4</div><div class="step-title">Invest automatically</div><div class="step-desc">Set up recurring investments and let your money grow. Check in whenever you want — or just forget about it.</div></div>
     </div>
   </div>
@@ -272,13 +268,13 @@ footer{background:var(--text);color:rgba(255,255,255,0.7);padding:48px 5vw 32px;
     <h2 class="section-title" style="margin-bottom:24px;">Built for people who know they should be investing — but haven't started or want to do more.</h2>
     <div class="why-grid">
       <div class="why-left">
-        <p style="font-size:16px;color:var(--text-mid);line-height:1.8;margin-bottom:20px;">The #1 barrier to investing isn't money — it's not knowing what to do. Too many options, too much jargon, too many apps that assume you already know the answer.</p>
-        <p style="font-size:16px;color:var(--text-mid);line-height:1.8;margin-bottom:28px;">Bacon fixes that. We make the recommendation so you can stress less and invest more.</p>
+        <p style="font-size:16px;color:var(--text-mid);line-height:1.8;margin-bottom:20px;">The #1 barrier to investing isn't money — it's not knowing what to do. There are too many options, too much jargon, and too many apps that assume you already know the answers.</p>
+        <p style="font-size:16px;color:var(--text-mid);line-height:1.8;margin-bottom:28px;">Bacon fixes that. Our job is to learn about your situation and make the best recommendation for you, so you can stress less and invest more.</p>
         <a href="#waitlist" class="btn-primary" style="font-size:15px;">Get off the sidelines</a>
       </div>
       <div class="why-right">
-        <div class="why-card"><div class="why-icon" style="background:var(--orange-light);">🎯</div><div><div class="why-card-title">Radical simplicity</div><div class="why-card-desc">We only offer four options, because in reality, that is all 99% of people need. We already made the hard choices for you so you can make your money work for you.</div></div></div>
-        <div class="why-card"><div class="why-icon" style="background:var(--pink-light);">🔒</div><div><div class="why-card-title">Retirement accounts for young earners</div><div class="why-card-desc">Most apps bury retirement accounts. We make one easy to set up, because starting early is the single best financial move you can make.</div></div></div>
+        <div class="why-card"><div class="why-icon" style="background:var(--orange-light);">🎯</div><div><div class="why-card-title">Is it really this easy? Yes!</div><div class="why-card-desc">We only offer four options, because that's all you really need to achieve your goals. We already did the research and made the hard choices for you, so you have no excuse to get started.</div></div></div>
+        <div class="why-card"><div class="why-icon" style="background:var(--pink-light);">🔒</div><div><div class="why-card-title">Get saving for retirement in minutes</div><div class="why-card-desc">We make retirement accounts clear and easy to set up, because starting early is the single best financial move you can make.</div></div></div>
         <div class="why-card"><div class="why-icon" style="background:var(--blue-light);">💸</div><div><div class="why-card-title">Simple, transparent fees</div><div class="why-card-desc">We charge 0.15% of your balance annually — automatically deducted. Under $1,000 invested? You'll pay less than $1.50 for the whole year.</div></div></div>
       </div>
     </div>
@@ -291,10 +287,10 @@ footer{background:var(--text);color:rgba(255,255,255,0.7);padding:48px 5vw 32px;
     <h2 class="section-title">Introducing our investment lineup.</h2>
     <p class="section-sub">Whether you're a finance pro or it's your first time thinking about this, we'll pick out the best of our four options for you, based on your timeline and goals.</p>
     <div class="etf-grid">
-      <div class="etf-card bnd"><div class="etf-ticker">BND</div><div class="etf-name-full">Total Bond Market</div><div class="etf-desc">Low volatility, steady returns. Best for short timelines or anyone who needs stability first.</div><span class="etf-tag">Stable</span></div>
+      <div class="etf-card bnd"><div class="etf-ticker">BND</div><div class="etf-name-full">Total Bond Market</div><div class="etf-desc">Low volatility and steady returns. Best for that emergency fund or short timelines.</div><span class="etf-tag">Stable</span></div>
       <div class="etf-card blend"><div class="etf-ticker">Blend</div><div class="etf-name-full">50% BND + 50% VOO</div><div class="etf-desc">Our Bacon Blend splits the difference — growth potential with a cushion of stability.</div><span class="etf-tag">Balanced</span></div>
-      <div class="etf-card voo"><div class="etf-ticker">VOO</div><div class="etf-name-full">S&amp;P 500 ETF</div><div class="etf-desc">500 of America's biggest companies. The classic long-term investment for a reason.</div><span class="etf-tag">Growth</span></div>
-      <div class="etf-card vug"><div class="etf-ticker">VUG</div><div class="etf-name-full">Growth ETF</div><div class="etf-desc">High-growth US companies. More upside, more swings — best with a long horizon.</div><span class="etf-tag">High growth</span></div>
+      <div class="etf-card voo"><div class="etf-ticker">VOO</div><div class="etf-name-full">S&amp;P 500 ETF</div><div class="etf-desc">Invest in the growth of 500 of America's biggest companies. This is a classic long-term investment for a reason.</div><span class="etf-tag">Growth</span></div>
+      <div class="etf-card vug"><div class="etf-ticker">VUG</div><div class="etf-name-full">Growth ETF</div><div class="etf-desc">High-growth US companies. More potential upside with more day-to-day swings — best for a long time horizon.</div><span class="etf-tag">High growth</span></div>
     </div>
     <p style="font-size:12px;color:var(--text-soft);margin-top:24px;max-width:600px;">Expense ratios 0.03–0.04%. Bacon does not benefit from these fund fees. Past performance does not guarantee future results. Investing involves risk, including possible loss of principal.</p>
   </div>
@@ -321,11 +317,11 @@ footer{background:var(--text);color:rgba(255,255,255,0.7);padding:48px 5vw 32px;
   <div style="max-width:1000px;margin:0 auto;">
     <div class="section-eyebrow">Learn</div>
     <h2 class="section-title">Investing 101 — in plain English.</h2>
-    <p class="section-sub">Short, jargon-free guides for first-time investors. More coming soon.</p>
+    <p class="section-sub">We hear you — you want to learn more about what makes these investments work for you. We want to help you understand why we believe investing now is the best decision you can make for your future self. More coming soon.</p>
     <div class="learn-grid">
       <div class="learn-card"><div class="learn-img" style="background:var(--orange-light);">📖</div><div class="learn-body"><div class="learn-tag">Basics</div><div class="learn-title">What is an ETF and why should I care?</div><div class="learn-preview">The easiest way to understand what you're actually investing in — no Wall Street lingo needed.</div></div></div>
       <div class="learn-card"><div class="learn-img" style="background:var(--pink-light);">🌱</div><div class="learn-body"><div class="learn-tag">Retirement</div><div class="learn-title">Roth IRA vs. Traditional IRA: which one is for you?</div><div class="learn-preview">The difference between paying taxes now vs. later — and why it matters more than you think in your 20s.</div></div></div>
-      <div class="learn-card"><div class="learn-img" style="background:var(--blue-light);">📅</div><div class="learn-body"><div class="learn-tag">Strategy</div><div class="learn-title">Why "set it and forget it" actually works</div><div class="learn-preview">The case for automatic investing — and why not checking your portfolio every day is a feature, not a bug.</div></div></div>
+      <div class="learn-card"><div class="learn-img" style="background:var(--blue-light);">📅</div><div class="learn-body"><div class="learn-tag">Strategy</div><div class="learn-title">Why "set it and forget it" actually works</div><div class="learn-preview">Making the case for automatic investing — why stacking your savings over time adds up to more than you think.</div></div></div>
     </div>
     <p style="text-align:center;margin-top:28px;font-size:14px;color:var(--text-soft);">✉️ Articles launching soon — join the waitlist to be notified.</p>
   </div>
@@ -343,7 +339,6 @@ footer{background:var(--text);color:rgba(255,255,255,0.7);padding:48px 5vw 32px;
     </div>
     <div class="waitlist-success" id="successMsg">🎉 You're on the list! We'll be in touch.</div>
     </form>
-    <p class="waitlist-fine">No spam. No pitch decks. Just Bacon.</p>
   </div>
 </section>
 
