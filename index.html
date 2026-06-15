@@ -169,10 +169,11 @@ footer{background:var(--text);color:rgba(255,255,255,0.7);padding:48px 5vw 32px;
 
   /* HERO */
   .hero{padding:48px 5vw 48px;min-height:auto;}
-  .hero-inner{grid-template-columns:1fr;gap:32px;}
+  .hero-inner{grid-template-columns:1fr !important;gap:32px !important;display:flex !important;flex-direction:column !important;}
   .hero h1{font-size:32px;}
   .hero-sub{font-size:15px;margin-bottom:24px;}
-  .hero-visual{margin-top:0;}
+  .hero-text{order:1;}
+  .hero-visual{order:2;width:100%;display:flex;justify-content:center;}
   .phone-frame{width:240px;}
 
   /* FRIENDS */
@@ -258,8 +259,8 @@ footer{background:var(--text);color:rgba(255,255,255,0.7);padding:48px 5vw 32px;
 </nav>
 
 <section class="hero">
-  <div class="hero-inner">
-    <div>
+  <div class="hero-inner" style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;">
+    <div class="hero-text">
       <div class="hero-eyebrow">🥓 Now in beta</div>
       <h1>You bring home the bacon.<br/><span>Now let's save it.</span></h1>
       <p class="hero-sub">Bacon makes the investing process simple. Download the app, answer a few quick questions, and we'll recommend one of our four well-researched, low-cost ETFs that fits your goals. Getting setup takes less than five minutes.</p>
